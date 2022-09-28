@@ -5,11 +5,10 @@ error_reporting(~E_NOTICE); //hides the notices
 ob_start();
 session_start();
 
-
 include ('../netting/connect.php');
 
 $askaccount=$db->prepare("SELECT * FROM admin_pannel where account_mail=:mail");
-$askaccount-> execute(array(
+$askaccount-> execute(array (
   'mail' => $_SESSION['account_mail']
 ));
 $accountget=$askaccount->fetch(PDO::FETCH_ASSOC);
@@ -56,6 +55,19 @@ if ($count==0) {
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+
+
+    <style>
+    .txtalgncenter{
+      text-align:center;
+    }
+    .flright{
+      float: right;
+    }
+    .flleft{
+      float: left;
+    }
+    </style>
   </head>
 
   <body class="nav-md">
@@ -79,8 +91,8 @@ if ($count==0) {
                   
                   
                   <li><a href="index.php"><i class="fa fa-home"></i>Anasayfa</a></li>
-                  <li><a href="product.php"><i class="fa fa-user"></i>Öğrenciler</a></li>
-                  <li><a href="category.php"><i class="fa fa-list"></i>Sınıflar</a></li>
+                  <li><a href="students.php"><i class="fa fa-user"></i>Öğrenciler</a></li>
+                  <li><a href="classes.php"><i class="fa fa-list"></i>Sınıflar</a></li>
                   <li><a href="accounts.php"><i class="fa fa-lock"></i>Yönetim paneli Hesapları</a></li>
                   
 
@@ -140,7 +152,6 @@ if ($count==0) {
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
                    
                     <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>Oturumu Kapat</a></li>
-                    <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i>lorem ipsum</a></li>
                   </ul>
                 </li>
 
