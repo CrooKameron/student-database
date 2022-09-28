@@ -32,6 +32,144 @@ if (isset($_POST['adminlogin'])) {
 
 
 
+if (isset($_POST['editstudent'])) {
+
+    $student_number = $_POST['student_number'];
+
+    $save = $db->prepare("UPDATE student_information SET 
+        student_number=:student_number,
+        student_surname=:student_surname,
+        student_name=:student_name,
+        student_parent_name=:student_parent_name,
+        student_parent_phonenumber=:student_parent_phonenumber,
+        student_branch=:student_branch,
+        student_class=:student_class,
+        student_socialsecuritynumber=:student_socialsecuritynumber
+        WHERE student_number=$student_number");
+
+
+    $insert = $save->execute(array(
+        'student_number' => $student_number,
+        'student_surname' => $_POST['student_surname'],
+        'student_name' => $_POST['student_name'],
+        'student_parent_name' => $_POST['student_parent_name'],
+        'student_parent_phonenumber' => $_POST['student_parent_phonenumber'],
+        'student_branch' => $_POST['student_branch'],
+        'student_class' => $_POST['student_class'],
+        'student_socialsecuritynumber' => $_POST['student_socialsecuritynumber']
+        
+    ));
+
+    if ($insert) header("Location: ../admin-pannel/students.php?durum=basarili");
+    else header("Location: ../admin-pannel/students.php?durum=basarisiz");
+}
+
+
+
+
+
+if ($_GET['deletestudent'] == "true") {
+    $destroy = $db->prepare("DELETE from student_information where student_number=:numb");
+    $control = $destroy->execute(array(
+        'numb' => $_GET['student_number']
+    ));
+
+    if ($control) header("Location: ../admin-pannel/students.php?durum=basarili");
+    else header("Location: ../admin-pannel/students.php?durum=basarisiz");
+}
+
+
+if (isset($_POST['addstudent'])) {
+
+    $student_number = $_POST['student_number'];
+
+
+
+    $save = $db->prepare("INSERT INTO student_information SET 
+        student_number=:student_number,
+        student_surname=:student_surname,
+        student_name=:student_name,
+        student_parent_name=:student_parent_name,
+        student_parent_phonenumber=:student_parent_phonenumber,
+        student_branch=:student_branch,
+        student_class=:student_class,
+        student_socialsecuritynumber=:student_socialsecuritynumber
+    ");
+
+
+    $insert = $save->execute(array(
+
+        'student_number' => $student_number,
+        'student_surname' => $_POST['student_surname'],
+        'student_name' => $_POST['student_name'],
+        'student_parent_name' => $_POST['student_parent_name'],
+        'student_parent_phonenumber' => $_POST['student_parent_phonenumber'],
+        'student_branch' => $_POST['student_branch'],
+        'student_class' => $_POST['student_class'],
+        'student_socialsecuritynumber' => $_POST['student_socialsecuritynumber']
+    ));
+
+    if ($insert) header("Location: ../admin-pannel/students.php?durum=basarili");
+    else header("Location: ../admin-pannel/students.php?durum=basarisiz");
+}
+
+
+
+if ($_GET['deleteaccount'] == "true") {
+    $destroy = $db->prepare("DELETE from admin_pannel where account_id=:id");
+    $control = $destroy->execute(array(
+        'id' => $_GET['account_id']
+    ));
+
+    if ($control) header("Location: ../admin-pannel/accounts.php?status=sucsess");
+
+    else header("Location: ../admin-pannel/accounts.php?status=fail");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // if (isset($_POST['editaccountinformation'])) {
 
 //     $accountsave = $db->prepare("UPDATE account SET 
@@ -53,16 +191,7 @@ if (isset($_POST['adminlogin'])) {
 // }
 
 
-// if ($_GET['deleteuser'] == "true") {
-//     $destroy = $db->prepare("DELETE from account where account_id=:id");
-//     $control = $destroy->execute(array(
-//         'id' => $_GET['account_id']
-//     ));
 
-//     if ($control) header("Location: ../production/accounts.php?status=sucsess");
-
-//     else header("Location: ../production/accounts.php?status=fail");
-// }
 
 if (isset($_POST['generalsettingssend'])) {
 
@@ -561,15 +690,6 @@ if ($_GET['deletecategory'] == "true") {
 }
 
 
-if ($_GET['deleteproduct'] == "true") {
-    $destroy = $db->prepare("DELETE from product where product_id=:id");
-    $control = $destroy->execute(array(
-        'id' => $_GET['product_id']
-    ));
-
-    if ($control) header("Location: ../production/product.php?status=success");
-    else header("Location: ../production/product.php?status=fail");
-}
 
 if ($_GET['featuredproduct'] == "true") {
 
@@ -592,80 +712,13 @@ if ($_GET['undofeaturedproduct'] == "true") {
 
 
 
-if (isset($_POST['editproduct'])) {
-
-    $product_seourl = seo($_POST['product_name']);
-    $product_id = $_POST['product_id'];
 
 
 
-    $save = $db->prepare("UPDATE product SET 
-        product_category_id=:product_category_id,
-        product_name=:product_name,
-        product_price=:product_price,
-        product_detail=:product_detail,
-        product_keyword=:product_keyword,
-        product_seourl=:product_seourl,
-        product_stock=:product_stock,
-        product_featured=:product_featured,
-        product_status=:product_status
-        WHERE product_id=$product_id");
-
-
-    $insert = $save->execute(array(
-        'product_category_id' => $_POST['product_category_id'],
-        'product_name' => $_POST['product_name'],
-        'product_price' => $_POST['product_price'],
-        'product_detail' => $_POST['product_detail'],
-        'product_keyword' => $_POST['product_keyword'],
-        'product_seourl' => $product_seourl,
-        'product_stock' => $_POST['product_stock'],
-        'product_featured' => $_POST['product_featured'],
-        'product_status' => $_POST['product_status']
-    ));
-
-    if ($insert) header("Location: ../production/product.php?status=success");
-
-    else header("Location: ../production/product.php?status=fail");
-}
-
-
-if (isset($_POST['addproduct'])) {
-
-    $product_seourl = seo($_POST['product_name']);
-    $product_id = $_POST['product_id'];
 
 
 
-    $save = $db->prepare("INSERT INTO product SET 
-        product_category_id=:product_category_id,
-        product_name=:product_name,
-        product_price=:product_price,
-        product_moneyunit=:product_moneyunit,
-        product_detail=:product_detail,
-        product_keyword=:product_keyword,
-        product_seourl=:product_seourl,
-        product_stock=:product_stock,
-        product_status=:product_status
-    ");
 
-
-    $insert = $save->execute(array(
-        'product_category_id' => $_POST['product_category_id'],
-        'product_name' => $_POST['product_name'],
-        'product_price' => $_POST['product_price'],
-        'product_moneyunit' => "$",
-        'product_detail' => $_POST['product_detail'],
-        'product_keyword' => $_POST['product_keyword'],
-        'product_seourl' => $product_seourl,
-        'product_stock' => $_POST['product_stock'],
-        'product_status' => $_POST['product_status']
-    ));
-
-    if ($insert) header("Location: ../production/product.php?status=sucsess");
-
-    else header("Location: ../production/product.php?status=fail");
-}
 
 if (isset($_POST['addtocart'])) {
 

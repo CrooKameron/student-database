@@ -15,17 +15,10 @@ $studentget = $askstudent->fetch(PDO::FETCH_ASSOC);
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-          <h2>Düzenle 
-
-            <?php if ($_GET['durun'] == "basarili") { ?> <small style="color:green;"> Değişiklikler kaydedildi! </small>
-            <?php }
-            if ($_GET['durum'] == "basarisiz") { ?> <small style="color:red;"> Bir şeyler yanlış gitti! </small>
-            <?php } else echo (null); ?>
-
-          </h2>
+          <h2>Düzenle</h2>
             
           <ul style="list-style-type: none;">
-            <li><a class="flright" close-link><i class="fa fa-close"></i></a></li>
+            <li><a class="flright" close-link><i class="fa fa-close"> </i></a></li>
           </ul>
 
             <div class="clearfix"></div>
@@ -105,17 +98,6 @@ $studentget = $askstudent->fetch(PDO::FETCH_ASSOC);
               </div>
 
 
-
-              <!-- <div class="form-group">
-                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Product status<span class="required">*</span>
-                </label>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <select name="product_status" id="heard" class="form-control" required>
-                    <option value="0" <?php if ($studentget['product_status'] == 0) { echo 'selected=""'; }  ?>> Passive </option>
-                    <option value="1" <?php if ($studentget['product_status'] == 1) { echo 'selected=""'; }  ?>> Active  </option>
-                  </select>
-                </div>
-              </div> -->
 
 
               <div class="ln_solid"></div>

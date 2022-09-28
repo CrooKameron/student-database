@@ -1,8 +1,8 @@
-<?php 
-include'header.php';
+<?php
+include 'header.php';
 
-$askaccount=$db->prepare("SELECT * FROM account");
-$askaccount-> execute();
+$askstudent = $db->prepare("SELECT * FROM admin_pannel");
+$askstudent->execute();
 
 ?>
 
@@ -16,29 +16,18 @@ $askaccount-> execute();
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2> Accounts List</h2><?php 
-                      if ($_GET['status'] == "success") {
-                        ?> <small style="color:green; "> preferences saved! </small>  <?php
-                      }
-                    ?> 
-                    <?php 
-                    if ($_GET['status'] == "fail") {
-                      ?> <small style="color:red;"> something vent wrong! </small>  <?php
-                    }
-                  ?>
+            <h2>Hesap Listesi</h2>
+            &nbsp;&nbsp;&nbsp;
+
+            <?php if ($_GET['durum'] == "basarili") { ?> <small style="color:green;"> Değişiklikler kaydedildi! </small>
+            <?php }
+            if ($_GET['durum'] == "basarisiz") { ?> <small style="color:red;"> Bir şeyler yanlış gitti! </small>
+            <?php } else echo (null); ?>
+
             <ul class="nav navbar-right panel_toolbox">
-              <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-              </li>
               <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                <ul class="dropdown-menu" role="menu">
-                  <li><a href="#">Settings 1</a>
-                  </li>
-                  <li><a href="#">Settings 2</a>
-                  </li>
-                </ul>
+                <div style="margin:4px 5px 0 0;"><a href="account-create.php"> <button class="btn btn-success btn-xs" name="createaccount">Hesap Oluştur</button></a></div>
               </li>
-              <li><a class="close-link"><i class="fa fa-close"></i></a>
               </li>
             </ul>
             <div class="clearfix"></div>
@@ -46,49 +35,41 @@ $askaccount-> execute();
           <div class="x_content">
 
 
-            <!-- Div İçerik Başlangıç -->
 
-            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%"> 
-            <thead>
+
+            <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+              <thead>
                 <tr>
-                  <th style="text-align:center;">Mail adress</th>
-                  <th style="text-align:center;">Password</th>
-                  <th style="text-align:center;">In game nick</th>                  
-                  <th style="text-align:center;">nickname</th>
-                  <th style="text-align:center;">Authority</th>
-                  <th style="text-align:center;">Account status</th>
-                  <th style="text-align:center;">Registration Date</th>
-                  <th style="text-align:center;">edit</th>
-                  <th style="text-align:center;">delete</th>
-                
+                  <th style="text-align:center; width: 40px;">Hesap numarası</th>
+                  <th style="text-align:center;">Mail adresi</th>
+                  <th style="text-align:center;">Şifrelenmiş parola</th>
+                  <th style="text-align:center;">Sil</th>
+
                 </tr>
               </thead>
 
               <tbody>
 
-                <?php while($accountget=$askaccount->fetch(PDO::FETCH_ASSOC)) { ?>
-                <tr>
-                  <td><?php echo $accountget['account_mail']?></td>
-                  <td><?php echo $accountget['account_password']?></td>
-                  <td><?php echo $accountget['account_ign']?></td>
-                  <td><?php echo $accountget['account_nickname']?></td>
-                  <td><?php echo $accountget['account_authority']?></td>
-                  <td><?php echo $accountget['account_status']?></td>
-                  <td><?php echo $accountget['account_time']?></td>
-                  <td> <center> <a href="../netting/process.php?account_id=<?php echo $accountget['account_id'] ?>&deleteuser=true"><button style="width:60px; height:30px;" class="btn btn-danger btn-xs">Delete</button></a></center></td>
-                  <td> <center> <a href="account-edit.php?account_id=<?php echo $accountget['account_id'] ?>"> <button style="width:60px; height:30px;" class="btn btn-primary btn-xs">Edit</button></a></center></td>
-                </tr>
+                <?php while ($studentget = $askstudent->fetch(PDO::FETCH_ASSOC)) { ?>
+                  <tr>
+                    <td style="width: 40px;" class="txtalgncenter"><?php echo $studentget['account_id'] ?></td>
+                    <td class="txtalgncenter"><?php echo $studentget['account_mail'] ?></td>
+                    <td class="txtalgncenter"><?php echo $studentget['account_password'] ?></td>
+                    <td>
+                      <center> <a href="../netting/process.php?account_id=<?php echo $studentget['account_id'] ?>&deleteaccount=true"><button style="width:100%; height:30px;" class="btn btn-danger btn-xs">Delete</button></a></center>
+                    </td>
+                  </tr>
 
-                <?php } ?> 
+                <?php } ?>
 
 
 
-         
+
 
               </tbody>
             </table>
 
-            <!-- Div İçerik Bitişi -->
+
 
 
           </div>
@@ -101,6 +82,5 @@ $askaccount-> execute();
 
   </div>
 </div>
-<!-- /page content -->
-        <!-- /page content -->
-        <?php include'footer.php' ?>
+
+<?php include 'footer.php' ?>

@@ -18,7 +18,7 @@ $askstudent->execute();
             <h2>Öğrenciler</h2>
             <div style="margin:4px 0 0 140px; position:absolute;">
               
-              <?php if ($_GET['durun'] == "basarili") { ?> <small style="color:green;"> Değişiklikler kaydedildi! </small>
+              <?php if ($_GET['durum'] == "basarili") { ?> <small style="color:green;"> Değişiklikler kaydedildi! </small>
               <?php }
               if ($_GET['durum'] == "basarisiz") { ?> <small style="color:red;"> Bir şeyler yanlış gitti! </small>
               <?php } else echo (null); ?>
@@ -37,7 +37,7 @@ $askstudent->execute();
             </ul>
             <div class="clearfix"></div>
           </div>
-          <div class="x_content">
+          <div class="x_content"> 
 
             <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
               <thead>
@@ -70,9 +70,9 @@ $askstudent->execute();
                     <td class="txtalgncenter"><?php echo $studentget['student_branch'] ?></td>
                     <td class="txtalgncenter"><?php echo $studentget['student_class'] ?></td>
                     <td class="txtalgncenter"><?php echo $studentget['student_socialsecuritynumber'] ?></td>
-                    <td class="txtalgncenter"><a href="product-gallery.php?product_id=<?php echo $studentget['product_id'] ?>"><button class="btn btn-success" style="width:100%; height:100%;">Resmi düzenle</button></a></td>
-
-                    <td><center> <a href="student-edit.php?student_number=<?php echo $studentget['student_number'] ?>"> <button style="width:100%; height:100%;" class="btn btn-primary ">Düzenle</button></a></center></td>
+                    
+                    <td><center> <a href="product-gallery.php?product_id=<?php echo $studentget['product_id'] ?>"><button class="btn btn-success" style="width:100%; height:100%;">Resmi düzenle</button></a></center></td>
+                    <td><center> <a href="student-edit.php?student_number=<?php echo $studentget['student_number'] ?>"> <button style="width:100%; height:100%;" class="btn btn-primary">Düzenle</button></a></center></td>
                     <td><center> <a href="../netting/process.php?student_number=<?php echo $studentget['student_number'] ?>&deletestudent=true"><button style="width:100%; height:100%;" class="btn btn-danger">Sil</button></a></center></td>
                   </tr>
 
