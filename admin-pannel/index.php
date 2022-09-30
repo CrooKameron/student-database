@@ -1,4 +1,9 @@
-         <?php include'header.php' ?> <!-- başka dosyaları projemize dahil etmeye yarar -->
+        <?php header("Location:students.php") ?>
+        
+        
+        
+        <?php include'header.php' ?>
+ 
         <!-- page content -->
         <div class="right_col" role="main">
           <div class="">
