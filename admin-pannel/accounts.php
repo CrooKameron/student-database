@@ -56,7 +56,7 @@ $askstudent->execute();
                     <td class="txtalgncenter"><?php echo $studentget['account_mail'] ?></td>
                     <td class="txtalgncenter"><?php echo $studentget['account_password'] ?></td>
                     <td>
-                      <center> <a href="../netting/process.php?account_id=<?php echo $studentget['account_id'] ?>&deleteaccount=true"><button style="width:100%; height:30px;" class="btn btn-danger btn-xs">Delete</button></a></center>
+                      <center> <a href="../netting/process.php?account_id=<?php echo $studentget['account_id'] ?>&deleteaccount=true"><button style="width:100%; height:30px;" class="btn btn-danger btn-xs">Sil</button></a></center>
                     </td>
                   </tr>
 

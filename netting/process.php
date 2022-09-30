@@ -129,7 +129,32 @@ if ($_GET['deleteaccount'] == "true") {
 
 
 
+// delete student images 
 
+// if (isset($_POST['productphotodelete'])) {
+
+//     $product_id = $_POST['product_id'];
+
+
+//     echo $checklist = $_POST['productphotoselect'];
+
+
+//     foreach ($checklist as $list) {
+
+//         $sil = $db->prepare("DELETE from productphoto where productphoto_id=:productphoto_id");
+//         $kontrol = $sil->execute(array(
+//             'productphoto_id' => $list
+//         ));
+//     }
+
+//     if ($kontrol) {
+
+//         Header("Location:../production/product-gallery.php?product_id=$product_id&status=ok");
+//     } else {
+
+//         Header("Location:../production/product_gallery.php?product_id=$product_id&status=no");
+//     }
+// }
 
 
 
@@ -772,30 +797,6 @@ if (isset($_POST['sliderbundleaddtocart'])) {
     }
 }
 
-if (isset($_POST['productphotodelete'])) {
-
-    $product_id = $_POST['product_id'];
-
-
-    echo $checklist = $_POST['productphotoselect'];
-
-
-    foreach ($checklist as $list) {
-
-        $sil = $db->prepare("DELETE from productphoto where productphoto_id=:productphoto_id");
-        $kontrol = $sil->execute(array(
-            'productphoto_id' => $list
-        ));
-    }
-
-    if ($kontrol) {
-
-        Header("Location:../production/product-gallery.php?product_id=$product_id&status=ok");
-    } else {
-
-        Header("Location:../production/product_gallery.php?product_id=$product_id&status=no");
-    }
-}
 
 if ($_GET['deletecart'] == "true") {
     $destroy = $db->prepare("DELETE from cart where cart_id=:id");
