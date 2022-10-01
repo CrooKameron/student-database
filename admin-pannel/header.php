@@ -93,7 +93,7 @@ if ($count==0) {
                   <!-- <li><a href="index.php"><i class="fa fa-home"></i>Anasayfa</a></li> -->
                   <li><a href="students.php"><i class="fa fa-user"></i>Öğrenciler</a></li>
                   <!-- <li><a href="classes.php"><i class="fa fa-list"></i>Sınıflar</a></li> -->
-                  <li><a href="accounts.php"><i class="fa fa-lock"></i>Yönetim paneli Hesapları</a></li>
+                  <li><a href="accounts.php"><i class="fa fa-lock"></i>Yönetim paneli Hesapları</a></li> 
                   
 
 
